@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
+import { TileState } from './tile-state';
 
-export enum TileState {
-  none = 0,
-  block = 1
-}
 
 @Component({
   selector: 'app-tile',
@@ -15,6 +12,8 @@ export class TileComponent implements OnInit {
   @Input() state: TileState = TileState.none;
 
   @HostBinding('class.tile-block') get classTileBlock() { return this.state === TileState.block; }
+  @HostBinding('class.tile-start') get classTileStart() { return this.state === TileState.start; }
+  @HostBinding('class.tile-end') get classTileEnd() { return this.state === TileState.end; }
 
   constructor() { }
 
@@ -27,6 +26,12 @@ export class TileComponent implements OnInit {
         this.state = TileState.block;
         break;
       case TileState.block:
+        this.state = TileState.start;
+        break;
+      case TileState.start:
+        this.state = TileState.end;
+        break;
+      case TileState.end:
         this.state = TileState.none;
         break;
     }
