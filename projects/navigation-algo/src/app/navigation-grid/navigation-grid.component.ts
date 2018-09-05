@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StateService } from '../services/state.service';
+import { Graph } from '../models/graph';
 
 @Component({
   selector: 'app-navigation-grid',
@@ -8,18 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class NavigationGridComponent implements OnInit {
 
 
-  matrix: number[][] = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]
-  ];
+  gameBoard: Graph;
 
-  constructor() { }
+  constructor(private state: StateService) { }
 
   ngOnInit() {
+    this.gameBoard = this.state.graph;
   }
 
 }

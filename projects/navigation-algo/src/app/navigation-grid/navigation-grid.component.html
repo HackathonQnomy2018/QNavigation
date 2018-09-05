@@ -1,6 +1,6 @@
-<div class="tiles-row" *ngFor="let row of matrix">
+<div class="tiles-row" *ngFor="let row of gameBoard.grid">
 
-  <app-tile *ngFor="let tile of row">
+  <app-tile *ngFor="let tile of row" [tile]="tile">
 
   </app-tile>
 
