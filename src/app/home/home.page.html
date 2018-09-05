@@ -1,10 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Home</ion-title>
+    <ion-title text-center>מסך הזדהות</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+  <div *ngIf="selectedView == views.Login" text-center>
+    <p>שלום לקוח יקר</p>
+    <p>בכדי להזדהות הכנס מספר ת.ז</p>
+
+    <form (ngSubmit)="onSubmit()" #PlayersInfoAndRate="ngForm">
+      <div class="page-padding">
+          <input class="test" matInput type="text" [maxlength]="15" [(ngModel)]="user.Id" [name]="'name'" required>
+          <br>
+          <!-- <ion-button id="basic" expand="block" (click)="presentLoading()">Show Loading</ion-button> -->
+        <ion-button type="submit" shape="round" color="fefault" [disabled]="PlayersInfoAndRate.invalid">שלח</ion-button>
+      </div>
+      <br>
+    </form>
+  </div>
+
+  <div *ngIf="selectedView == views.AppointmentDetails" text-center>
+      <p>ההזדהות בוצעה בהצלחה</p>
+      <p>יש לך תור לד"ר אבו מאזן</p>
+      <p>בשעה : 09:40</p>
+      <p>מחלקה אורטופדית</p>
+  </div>
 </ion-content>
