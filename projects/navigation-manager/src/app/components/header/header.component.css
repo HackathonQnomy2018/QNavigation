@@ -1,5 +1,5 @@
 .header{
-  height: 19vh;
+  height: 9vh;
   /*width: 100%;*/
   border: solid 1px;
   text-align: center;
@@ -11,3 +11,6 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */
 }
 
+mat-slider {
+  width: 300px;
+}
