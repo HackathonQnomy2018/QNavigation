@@ -1,0 +1,9 @@
+.tile{
+  /*width: calc(100vw / 30.5);*/
+  /*height: calc(62vh / 30);*/
+  border: solid ;
+  border-width: 0.01em;
+  border-color: rgba(138,138,138,0.6);
+  position: relative;
+
+}

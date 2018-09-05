@@ -1,0 +1,23 @@
+:host{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: green;
+    height: 3rem;
+    width: 3rem;
+    margin: 1px;
+
+
+    &.tile-block{
+        background: red;
+    }
+
+    &.tile-start{
+        background: yellow;
+    }
+
+    &.tile-end{
+        background: yellow;
+    }
+}

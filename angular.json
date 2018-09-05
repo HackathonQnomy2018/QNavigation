@@ -282,6 +282,125 @@
           }
         }
       }
+    },
+    "navigation-algo": {
+      "root": "projects/navigation-algo/",
+      "sourceRoot": "projects/navigation-algo/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/navigation-algo",
+            "index": "projects/navigation-algo/src/index.html",
+            "main": "projects/navigation-algo/src/main.ts",
+            "polyfills": "projects/navigation-algo/src/polyfills.ts",
+            "tsConfig": "projects/navigation-algo/tsconfig.app.json",
+            "assets": [
+              "projects/navigation-algo/src/favicon.ico",
+              "projects/navigation-algo/src/assets"
+            ],
+            "styles": [
+              "projects/navigation-algo/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/navigation-algo/src/environments/environment.ts",
+                  "with": "projects/navigation-algo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "navigation-algo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "navigation-algo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "navigation-algo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/navigation-algo/src/test.ts",
+            "polyfills": "projects/navigation-algo/src/polyfills.ts",
+            "tsConfig": "projects/navigation-algo/tsconfig.spec.json",
+            "karmaConfig": "projects/navigation-algo/karma.conf.js",
+            "styles": [
+              "projects/navigation-algo/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/navigation-algo/src/favicon.ico",
+              "projects/navigation-algo/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/navigation-algo/tsconfig.app.json",
+              "projects/navigation-algo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "navigation-algo-e2e": {
+      "root": "projects/navigation-algo-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/navigation-algo-e2e/protractor.conf.js",
+            "devServerTarget": "navigation-algo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "navigation-algo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/navigation-algo-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "schematics": {
