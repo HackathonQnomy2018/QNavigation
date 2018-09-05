@@ -1,0 +1,7 @@
+<div class="header">
+  <h4>Scale Row</h4>
+  <input type="range" min="1" max="100" [(ngModel)]="dataService.numOfRows" (change)="sliderChanged()" >
+  <!--<mat-slider></mat-slider>-->
+  <h4>Scale Col</h4>
+  <input type="range" min="1" max="100" [(ngModel)]="dataService.numOfCols" (change)="sliderChanged()" >
+</div>
