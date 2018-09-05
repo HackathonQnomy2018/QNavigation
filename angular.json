@@ -2,6 +2,7 @@
   "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
   "version": 1,
   "defaultProject": "app",
+  "newProjectRoot": "projects",
   "projects": {
     "app": {
       "root": "",
@@ -162,10 +163,126 @@
           }
         }
       }
+    },
+    "navigation-manager": {
+      "root": "projects/navigation-manager/",
+      "sourceRoot": "projects/navigation-manager/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/navigation-manager",
+            "index": "projects/navigation-manager/src/index.html",
+            "main": "projects/navigation-manager/src/main.ts",
+            "polyfills": "projects/navigation-manager/src/polyfills.ts",
+            "tsConfig": "projects/navigation-manager/tsconfig.app.json",
+            "assets": [
+              "projects/navigation-manager/src/favicon.ico",
+              "projects/navigation-manager/src/assets"
+            ],
+            "styles": [
+              "projects/navigation-manager/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/navigation-manager/src/environments/environment.ts",
+                  "with": "projects/navigation-manager/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "navigation-manager:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "navigation-manager:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "navigation-manager:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/navigation-manager/src/test.ts",
+            "polyfills": "projects/navigation-manager/src/polyfills.ts",
+            "tsConfig": "projects/navigation-manager/tsconfig.spec.json",
+            "karmaConfig": "projects/navigation-manager/karma.conf.js",
+            "styles": [
+              "projects/navigation-manager/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/navigation-manager/src/favicon.ico",
+              "projects/navigation-manager/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/navigation-manager/tsconfig.app.json",
+              "projects/navigation-manager/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "navigation-manager-e2e": {
+      "root": "projects/navigation-manager-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/navigation-manager-e2e/protractor.conf.js",
+            "devServerTarget": "navigation-manager:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "navigation-manager:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/navigation-manager-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
-  },
-  "cli": {
-    "defaultCollection": "@ionic/schematics-angular"
   },
   "schematics": {
     "@ionic/schematics-angular:component": {
