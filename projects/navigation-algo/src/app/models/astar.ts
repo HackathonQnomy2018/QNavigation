@@ -2,6 +2,8 @@ import { Heuristics } from './heuristics';
 import { pathTo } from './pathTo';
 import { getHeap } from './getHeap';
 import { INode } from './node';
+import { Graph } from './graph';
+import { GridNode } from './grid-node';
 
 export interface AstarOptions {
     heuristic?: any;
@@ -10,7 +12,7 @@ export interface AstarOptions {
 
 export class Astar {
 
-    static search(graph, start, end, options: AstarOptions = {}) {
+    static search(graph: Graph, start: GridNode, end: GridNode, options: AstarOptions = {}) {
         graph.cleanDirty();
         options = options || {};
         const heuristic = options.heuristic || Heuristics.manhattan;
@@ -89,7 +91,7 @@ export class Astar {
         return [];
     }
 
-    static cleanNode(node: INode) {
+    static cleanNode(node: GridNode) {
         node.f = 0;
         node.g = 0;
         node.h = 0;

@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavigationGridModule } from './navigation-grid/navigation-grid.module';
+import { ActionsModule } from './actions/actions.module';
 
 @NgModule({
   imports: [
-    BrowserModule, NavigationGridModule
+    BrowserModule, NavigationGridModule, ActionsModule
   ],
   declarations: [
     AppComponent

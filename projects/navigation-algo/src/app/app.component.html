@@ -1,1 +1,2 @@
-<app-navigation-grid></app-navigation-grid>
+<app-navigation-grid [start]="start" [end]="end" #navigation></app-navigation-grid>
+<app-actions (go)="navigation.go()"></app-actions>

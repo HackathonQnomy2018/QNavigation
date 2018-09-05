@@ -6,6 +6,7 @@ import { ActionsComponent } from './actions.component';
   imports: [
     CommonModule
   ],
-  declarations: [ActionsComponent]
+  declarations: [ActionsComponent],
+  exports: [ActionsComponent]
 })
 export class ActionsModule { }

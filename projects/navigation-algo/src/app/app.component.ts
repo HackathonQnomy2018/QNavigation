@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GridNode } from './models/grid-node';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'navigation-algo';
+  start = new GridNode(1, 1, 0);
+  end = new GridNode(1, 5, 0);
 }

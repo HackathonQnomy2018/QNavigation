@@ -1,4 +1,11 @@
 export class GridNode {
+    f: number;
+    g: number;
+    h: number;
+    visited: boolean;
+    closed: boolean;
+    parent: boolean;
+
     constructor(public x, public y, public weight) { }
 
     toString() {
