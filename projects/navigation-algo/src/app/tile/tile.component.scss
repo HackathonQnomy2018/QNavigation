@@ -4,9 +4,9 @@
     align-items: center;
 
     background: green;
-    height: 3rem;
-    width: 3rem;
-    margin: 1px;
+    height: 1rem;
+    width: 1rem;
+   // margin: 1px;
 
 
     &.tile-block{
@@ -19,5 +19,9 @@
 
     &.tile-end{
         background: yellow;
+    }
+
+    &.tile-step{
+        background: blue;
     }
 }

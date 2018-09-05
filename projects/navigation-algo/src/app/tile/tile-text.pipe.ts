@@ -9,11 +9,11 @@ export class TileTextPipe implements PipeTransform {
 
   transform(value: TileState, tile: GridNode): any {
 
-    if (value === TileState.start || tile && tile.weight === 4) {
+    if (value === TileState.start || tile && tile.weight === 3) {
       return 'start';
     }
 
-    if (value === TileState.end || tile && tile.weight === 3) {
+    if (value === TileState.end || tile && tile.weight === 4) {
       return 'end';
     }
 
