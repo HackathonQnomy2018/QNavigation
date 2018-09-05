@@ -1,0 +1,11 @@
+:host{
+    display: block;
+    background: green;
+    height: 3rem;
+    width: 3rem;
+    margin: 1px;
+
+    &.tile-block{
+        background: red;
+    }
+}
