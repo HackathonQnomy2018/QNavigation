@@ -5,7 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <div>
-    <ion-img src="assets/images/map.png"></ion-img>
+  <div class="my-map">
+    <img src="/assets/map-dave.png" #image />
+
+    <app-navigation-grid [image]="image" [start]="start" [end]="end" [matrix]="matrixReal" #navigation></app-navigation-grid>
   </div>
+
+  <app-actions (go)="navigation.go()"></app-actions>
+
 </ion-content>
