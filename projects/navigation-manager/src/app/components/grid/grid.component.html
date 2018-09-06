@@ -1,12 +1,15 @@
 <div class="grid-bg">
-    <table>
-      <tr *ngFor="let row of dataService.grid; let i = index">
-        <td *ngFor="let col of row ; let j = index" (mouseenter)="paintBoundries(i,j)" >
-          <app-tile [col]="col" ></app-tile>
-        </td>
-      </tr>
-    </table>
-  </div>
+  <table>
+    <tr *ngFor="let row of dataService.grid; let i = index">
+      <td *ngFor="let col of row ; let j = index" (mouseenter)="paintBoundries(i,j)">
+        <app-tile [col]="col"></app-tile>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<img src="/assets/map-dave.png"/>
+
 
 <!--<div class="grid-bg">-->
 <!--</div>-->
