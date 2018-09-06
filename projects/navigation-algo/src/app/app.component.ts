@@ -9,7 +9,7 @@ import { GridNode } from './models/grid-node';
 export class AppComponent {
   title = 'navigation-algo';
   start = new GridNode(3, 1, 0);
-  end = new GridNode(27, 40, 0);
+  end = new GridNode(27, 20, 0);
 
 
 
