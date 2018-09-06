@@ -1,7 +1,23 @@
 <div class="header">
-  <h4>Scale Row</h4>
-  <input type="range" min="1" max="100" [(ngModel)]="dataService.numOfRows" (change)="sliderChanged()" >
-  <!--<mat-slider></mat-slider>-->
-  <h4>Scale Col</h4>
-  <input type="range" min="1" max="100" [(ngModel)]="dataService.numOfCols" (change)="sliderChanged()" >
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Scale Row</h4>
+            <mat-slider
+                    [(ngModel)]="dataService.numOfRows"
+                    thumbLabel
+                    tickInterval="1000"
+                    min="1"
+                    max="100"></mat-slider>
+
+        </div>
+        <div class="col-md-6">
+            <h4>Scale Col</h4>
+            <mat-slider
+                    [(ngModel)]="dataService.numOfCols"
+                    thumbLabel
+                    tickInterval="1000"
+                    min="1"
+                    max="100"></mat-slider>
+        </div>
+    </div>
 </div>
