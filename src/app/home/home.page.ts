@@ -16,18 +16,22 @@ export class HomePage {
     AppointmentDetails: 2,
   };
 
-  constructor(public loadingController: LoadingController) {}
+  constructor(public loadingController: LoadingController) { }
 
   async presentLoading() {
     const loading = await this.loadingController.create({
       message: '...אנא המתן',
-      duration: 2000
+      duration: 1000
     });
     return await loading.present();
   }
 
   onSubmit() {
-    this.presentLoading();
+    // this.presentLoading();
     this.selectedView = this.views.AppointmentDetails;
   }
+
+  navigateToMap() {
+  }
+
 }
