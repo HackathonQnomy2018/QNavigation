@@ -1,1 +1,43 @@
 
+.border-radius{
+    border-radius: 15px 50px;
+    width: 150px;
+    height: 150px;
+    margin-left: 5%;
+
+    &.primary{
+        background-color: #3880ff;
+    }
+
+    &.primary-shade{
+        background-color: #3171e0;
+    }
+
+    &.primary-tint{
+        background-color: #4c8dff;
+    }
+
+    &.tertiary{
+        background-color: #7044ff;
+    }
+
+    &.tertiary-shade{
+        background-color: #633ce0;
+    }
+
+    &.tertiary-tint{
+        background-color: #7e57ff;
+    }
+
+    &.secondary{
+        background-color: #0cd1e8;
+    }
+
+    &.secondary-shade{
+        background-color: #0bb8cc;
+    }
+
+    &.secondary-tint{
+        background-color: #24d6ea;
+    }
+}

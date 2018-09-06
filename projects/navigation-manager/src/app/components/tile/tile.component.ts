@@ -15,9 +15,9 @@ export class TileComponent implements OnInit {
 
   ngOnInit() {
     this.tileStyle = {
-      'height': 'calc(72vh / ' + this.dataService.numOfRows + ')',
-      'width' : 'calc(calc(100vw / ' + this.dataService.numOfCols + ') - 0px)',
-      'background': this.col == 2 ? '#ff000961' : ''
+      'height': 'calc(82vh / ' + this.dataService.numOfRows + ')',
+      'width' : 'calc(100vw / ' + this.dataService.numOfCols + ')',
+      'background': this.col === 2 ? '#ff000961' : ''
 
     }
     // this.tileStyle = {

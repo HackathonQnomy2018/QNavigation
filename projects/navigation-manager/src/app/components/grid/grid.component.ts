@@ -23,10 +23,12 @@ export class GridComponent implements OnInit {
   paintBoundries(i, j) {
     if (this.ctrlPressed) {
       this.dataService.grid[i][j] = 2;
+
     }
     if (this.isShiftKeyPressed) {
       this.dataService.grid[i][j] = 1;
     }
+
   }
 
   handleKeyDown(e) {

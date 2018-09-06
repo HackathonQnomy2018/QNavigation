@@ -13,8 +13,8 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
   }
 
-  mapArr() {
-    console.log(this.data.grid)
-  }
+    print(){
+      console.log(JSON.stringify(this.dataService.grid))
+    }
 
 }
