@@ -1,29 +1,64 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center>מסך הזדהות</ion-title>
+    <ion-title text-center>הזדהות</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <div *ngIf="selectedView == views.Login" text-center>
-    <p>שלום לקוח יקר</p>
-    <p>בכדי להזדהות הכנס מספר ת.ז</p>
 
-    <form (ngSubmit)="onSubmit()" #PlayersInfoAndRate="ngForm">
-      <div class="page-padding">
-          <input class="test" matInput type="text" [maxlength]="15" [(ngModel)]="user.Id" [name]="'name'" required>
+    <ion-card>
+      <ion-img src="assets/images/login.png"></ion-img>
+      <ion-card-content>
+        <ion-card-title>הזדהות</ion-card-title>
+        <br>
+        <p>לקוח יקר</p>
+        <p>בכדי להזדהות הכנס מספר ת.ז</p>
+        <br>
+        <form (ngSubmit)="onSubmit()" #PlayersInfoAndRate="ngForm">
+          <div class="page-padding">
+            <input text-center class="test" matInput type="text" [maxlength]="11" [minlength]="6" [(ngModel)]="user.Id" [name]="'name'" required>
+            <br>
+            <!-- <ion-button id="basic" expand="block" (click)="presentLoading()">Show Loading</ion-button> -->
+            <ion-button type="submit" shape="round" color="fefault" [disabled]="PlayersInfoAndRate.invalid">שלח</ion-button>
+          </div>
           <br>
-          <!-- <ion-button id="basic" expand="block" (click)="presentLoading()">Show Loading</ion-button> -->
-        <ion-button type="submit" shape="round" color="fefault" [disabled]="PlayersInfoAndRate.invalid">שלח</ion-button>
-      </div>
-      <br>
-    </form>
+        </form>
+      </ion-card-content>
+    </ion-card>
   </div>
 
   <div *ngIf="selectedView == views.AppointmentDetails" text-center>
-      <p>ההזדהות בוצעה בהצלחה</p>
-      <p>יש לך תור לד"ר אבו מאזן</p>
-      <p>בשעה : 09:40</p>
-      <p>מחלקה אורטופדית</p>
+    <ion-card>
+      <ion-img src="assets/images/doctor.jpg"></ion-img>
+      <ion-card-content>
+        <ion-card-title>ד"ר איוון האיום</ion-card-title>
+        <br>
+        <p>בשעה : 09:40</p>
+        <p>מחלקה אורטופדית</p>
+        <br>
+        <ion-button color="primary" href="/tabs/(about:about)" (click)="navigateToMap()">
+          <ion-icon name="navigate"></ion-icon>
+          &nbsp;&nbsp;
+          <span>נווט לתור</span>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-img src="assets/images/doctor.jpg"></ion-img>
+        <ion-card-content>
+          <ion-card-title>ד"ר איוון האיום</ion-card-title>
+          <br>
+          <p>בשעה : 09:40</p>
+          <p>מחלקה אורטופדית</p>
+          <br>
+          <ion-button color="primary" href="/tabs/(about:about)" (click)="navigateToMap()">
+            <ion-icon name="navigate"></ion-icon>
+            &nbsp;&nbsp;
+            <span>נווט לתור</span>
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
   </div>
 </ion-content>
