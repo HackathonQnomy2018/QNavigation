@@ -1,0 +1,51 @@
+:host{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  .grid-bg {
+
+    position: relative;
+    display: block;
+    // width: auto;
+
+    height: 82vh;
+    // white-space: nowrap;
+    text-overflow: ellipsis;
+
+  
+    img {
+      display: block;
+      max-height: 100%;
+    }
+  
+    table {
+      display: block;
+      position: absolute;
+      top: 0;
+      // bottom: 0;
+      left: 0;
+  
+      // right: 0;
+      tbody {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+  
+        tr {
+          display: flex;
+          flex: 1;
+          border-bottom: 1px solid gray;
+  
+          td {
+            flex: 1;
+            border-left: 1px solid gray;
+          }
+        }
+      }
+    }
+  }
+}
+
