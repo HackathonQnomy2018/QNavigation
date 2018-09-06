@@ -16,7 +16,7 @@ export class EngineService {
       if (result !== []) {
         const start = new Date();
         result.forEach((resTile, index) => {
-          setTimeout(() => {
+          // setTimeout(() => {
             console.log('createPath');
             this.state.graph.grid[resTile.x][resTile.y].weight = 2;
             if (index === result.length - 1) {
@@ -26,7 +26,7 @@ export class EngineService {
               this.state.steps = result.length;
               this.state.router = 'finish';
             }
-          }, (index + 1) * 100);
+          // }, (index + 1) * 1000);
         });
       }
     }
@@ -39,7 +39,7 @@ export class EngineService {
     if (this.state.end !== undefined) {
       this.state.graph.grid[this.state.end.x][this.state.end.y].weight = 1;
     }
-    this.state.end = tile;
+    return   this.state.end = tile;
 
   }
   setStartTile(start: GridNode): any {
@@ -49,7 +49,7 @@ export class EngineService {
     if (this.state.start !== undefined) {
       this.state.graph.grid[this.state.start.x][this.state.start.y].weight = 1;
     }
-    this.state.start = tile;
+    return this.state.start = tile;
   }
 
   setTile(selectedTile: GridNode) {

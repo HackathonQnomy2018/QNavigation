@@ -15,10 +15,10 @@ export class TileComponent implements OnInit {
   @Input() tile: GridNode;
   @Input() state: TileState = TileState.none;
 
-  @HostBinding('class.tile-block') get classTileBlock() { return this.state === TileState.block; }
-  @HostBinding('class.tile-start') get classTileStart() { return this.state === TileState.start; }
-  @HostBinding('class.tile-end') get classTileEnd() { return this.state === TileState.end; }
-  @HostBinding('class.tile-step') get classTileStep() { return this.tile.weight === 1; }
+  @HostBinding('class.tile-block') get classTileBlock() { return this.tile.weight === 0; }
+  @HostBinding('class.tile-start') get classTileStart() { return this.tile.weight === 3; }
+  @HostBinding('class.tile-end') get classTileEnd() { return this.tile.weight === 4; }
+  @HostBinding('class.tile-step') get classTileStep() { return this.tile.weight === 2; }
 
   constructor(private engine: EngineService, private stateService: StateService) { }
 
@@ -26,22 +26,6 @@ export class TileComponent implements OnInit {
   }
 
   @HostListener('click') onclick() {
-    switch (this.state) {
-      case TileState.none:
-        this.state = TileState.block;
-        break;
-      case TileState.block:
-        this.stateService.configMode = 'start';
-        this.state = TileState.start;
-        break;
-      case TileState.start:
-        this.stateService.configMode = 'end';
-        this.state = TileState.end;
-        break;
-      case TileState.end:
-        this.state = TileState.none;
-        return;
-    }
     this.engine.setTile(this.tile);
   }
 
