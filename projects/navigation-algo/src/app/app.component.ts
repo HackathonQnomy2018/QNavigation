@@ -9,7 +9,7 @@ import { GridNode } from './models/grid-node';
 export class AppComponent {
   title = 'navigation-algo';
   start = new GridNode(3, 1, 0);
-  end = new GridNode(44, 25, 0);
+  end = new GridNode(42, 18, 0);
 
   @ViewChild('image') image: ElementRef;
 

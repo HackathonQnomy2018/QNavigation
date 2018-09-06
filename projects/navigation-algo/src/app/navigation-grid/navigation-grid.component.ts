@@ -29,6 +29,7 @@ export class NavigationGridComponent implements OnInit {
   @Input() set start(start: GridNode) { this._start = start; }
   @Input() set end(end: GridNode) { this._end = end; }
   @Input() set matrix(matrix: number[][]) {
+    // matrix[28][17] = 1;
     this.gameBoard = this.state.createGraph(matrix);
     this.engine.setStartTile(this._start);
     this.engine.setEndTile(this._end);
