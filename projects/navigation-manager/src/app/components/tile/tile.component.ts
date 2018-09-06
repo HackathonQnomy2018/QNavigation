@@ -4,7 +4,7 @@ import {DataService} from '../../services/data.service';
 @Component({
   selector: 'app-tile',
   templateUrl: './tile.component.html',
-  styleUrls: ['./tile.component.css']
+  styleUrls: ['./tile.component.scss']
 })
 export class TileComponent implements OnInit {
 
@@ -14,12 +14,12 @@ export class TileComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.tileStyle = {
-      'height': 'calc(82vh / ' + this.dataService.numOfRows + ')',
-      'width' : 'calc(100vw / ' + this.dataService.numOfCols + ')',
-      'background': this.col === 2 ? '#ff000961' : ''
+    // this.tileStyle = {
+    // //   'height': 'calc(82vh / ' + this.dataService.numOfRows + ')',
+    // //   'width' : 'calc(100vw / ' + this.dataService.numOfCols + ')',
+    //   'background': this.col === 2 ? '#ff000961' : ''
 
-    }
+    // };
     // this.tileStyle = {
     //   "width":
     // }

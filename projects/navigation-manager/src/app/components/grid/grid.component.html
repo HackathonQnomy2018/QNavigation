@@ -1,5 +1,7 @@
 <div class="grid-bg">
-  <table>
+  <img src="/assets/map-dave.png" #image />
+
+  <table [ngStyle]="img && {height: height + 'px', width:width + 'px'}">
     <tr *ngFor="let row of dataService.grid; let i = index">
       <td *ngFor="let col of row ; let j = index" (mouseenter)="paintBoundries(i,j)">
         <app-tile [col]="col"></app-tile>
@@ -8,7 +10,6 @@
   </table>
 </div>
 
-<img src="/assets/map-dave.png"/>
 
 
 <!--<div class="grid-bg">-->
