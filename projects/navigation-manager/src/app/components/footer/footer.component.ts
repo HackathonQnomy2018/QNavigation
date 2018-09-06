@@ -8,13 +8,13 @@ import { DataService } from '../../services/data.service';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private data: DataService) { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit() {
   }
 
-    print(){
-      console.log(JSON.stringify(this.dataService.grid))
-    }
+  print() {
+    console.log(JSON.stringify(this.dataService.grid));
+  }
 
 }
