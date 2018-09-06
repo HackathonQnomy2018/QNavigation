@@ -28,8 +28,8 @@ export class AppComponent {
       switchMap(params => {
 
 
-        return this.api.connect(params.find(v => v.indexOf('locationId') >= 0));
-      })
+        return this.api.start(params.find(v => v.indexOf('locationId') >= 0));
+      }),
 
     ).subscribe();
 
