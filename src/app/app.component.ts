@@ -30,6 +30,9 @@ export class AppComponent {
 
         return this.api.start(params.find(v => v.indexOf('locationId') >= 0));
       }),
+      map((val: any) => val.Data.Messages[0].Message),
+      map(val => JSON.parse(val)),
+      tap(val => localStorage.setItem('start', JSON.stringify(val)))
 
     ).subscribe();
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from './User';
 import { LoadingController } from '@ionic/angular';
+import { ApiServiceService } from '../api-service.service';
+import { tap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,7 @@ export class HomePage {
     AppointmentDetails: 2,
   };
 
-  constructor(public loadingController: LoadingController) { }
+  constructor(public loadingController: LoadingController, private api: ApiServiceService, ) { }
 
   async presentLoading() {
     const loading = await this.loadingController.create({
@@ -29,9 +31,19 @@ export class HomePage {
   onSubmit() {
     // this.presentLoading();
     this.selectedView = this.views.AppointmentDetails;
+
+    this.api.customer(this.user.Id)
+      .pipe(
+        map((val: any) => val.Data.Messages[0].Message),
+        tap(val => console.log('customer', val)),
+        tap(val => localStorage.setItem('customer', val)))
+      .subscribe();
+
+
   }
 
   navigateToMap() {
+
   }
 
 }

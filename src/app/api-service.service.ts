@@ -7,32 +7,28 @@ import { tap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class ApiServiceService {
 
-  headers: Headers;
 
   constructor(private http: HttpClient) {
 
-    this.headers = new Headers()
-    this.headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
-    this.headers.append('Access-Control-Allow-Credentials', 'true');
-    this.headers.append('Content-Type', 'application/json;charset=utf-8');
 
   }
 
-  matrix() {
+  matrix2() {
     const obj = { Case: '1', Data: null };
     const body = FORMS_BODY();
-    body.Template.OnlineFormTemplateItems[0].AnswerText = obj;
-    return this.http.post('https://centraldemo.qnomy.com/Forms/form/5A39990E-901E-4B76-820D-BCAFB232342B', body, { headers: this.headers })
+    body.Template.OnlineFormTemplateItems[0].AnswerText = JSON.stringify(obj);
+    return this.http.post('https://centraldemo.qnomy.com/Forms/form/5A39990E-901E-4B76-820D-BCAFB232342B', body)
       .pipe(tap(val => console.log(val)));
 
   }
 
 
   start(loctionParam) {
+    if (!loctionParam) { return; }
     const obj = { Case: '2', Data: loctionParam.split('=')[1] };
     const body = FORMS_BODY();
-    body.Template.OnlineFormTemplateItems[0].AnswerText = obj;
-    return this.http.post('https://centraldemo.qnomy.com/Forms/form/5A39990E-901E-4B76-820D-BCAFB232342B', body, { headers: this.headers })
+    body.Template.OnlineFormTemplateItems[0].AnswerText = JSON.stringify(obj);
+    return this.http.post('https://centraldemo.qnomy.com/Forms/form/5A39990E-901E-4B76-820D-BCAFB232342B', body)
       .pipe(tap(val => console.log(val)));
 
   }
@@ -41,8 +37,8 @@ export class ApiServiceService {
   customer(personalId) {
     const obj = { Case: '3', Data: personalId };
     const body = FORMS_BODY();
-    body.Template.OnlineFormTemplateItems[0].AnswerText = obj;
-    return this.http.post('https://centraldemo.qnomy.com/Forms/form/5A39990E-901E-4B76-820D-BCAFB232342B', body, { headers: this.headers })
+    body.Template.OnlineFormTemplateItems[0].AnswerText = JSON.stringify(obj);
+    return this.http.post('https://centraldemo.qnomy.com/Forms/form/5A39990E-901E-4B76-820D-BCAFB232342B', body)
       .pipe(tap(val => console.log(val)));
 
   }
@@ -51,8 +47,8 @@ export class ApiServiceService {
   end(customerId) {
     const obj = { Case: '4', Data: customerId };
     const body = FORMS_BODY();
-    body.Template.OnlineFormTemplateItems[0].AnswerText = obj;
-    return this.http.post('https://centraldemo.qnomy.com/Forms/form/5A39990E-901E-4B76-820D-BCAFB232342B', body, { headers: this.headers })
+    body.Template.OnlineFormTemplateItems[0].AnswerText = JSON.stringify(obj);
+    return this.http.post('https://centraldemo.qnomy.com/Forms/form/5A39990E-901E-4B76-820D-BCAFB232342B', body)
       .pipe(tap(val => console.log(val)));
   }
 }

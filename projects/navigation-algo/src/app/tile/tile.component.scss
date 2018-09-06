@@ -9,7 +9,9 @@
     max-height: 100%;
     max-width: 100%;
 
+
     img{
+        display: none;
         width: 2rem;
         height: 2rem;
     }
@@ -22,6 +24,8 @@
 
     &.tile-start {
         position: relative;
+        border-radius: 50%;
+        background: red;
 
         &::before {
             display: block;
@@ -35,9 +39,12 @@
 
     &.tile-end {
         background: green;
+        border-radius: 50%;
     }
 
     &.tile-step {
+        border-radius: 50%;
+        transform: scale(.7);
         background: rgba(blue, .5);
     }
 }

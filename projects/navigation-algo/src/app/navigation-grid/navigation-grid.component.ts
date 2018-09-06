@@ -22,17 +22,19 @@ export class NavigationGridComponent implements OnInit {
       this.width = image.clientWidth;
 
       this.setStyles();
-    }, 500);
+    }, 1000);
 
   }
 
-  @Input() set start(start: GridNode) { this._start = start; }
-  @Input() set end(end: GridNode) { this._end = end; }
+  @Input() set start(start: GridNode) { this._start = start; this.build(); }
+  @Input() set end(end: GridNode) { this._end = end; this.build(); }
   @Input() set matrix(matrix: number[][]) {
     // matrix[28][17] = 1;
     this.gameBoard = this.state.createGraph(matrix);
-    this.engine.setStartTile(this._start);
-    this.engine.setEndTile(this._end);
+
+
+    this.build();
+
   }
 
 
@@ -41,11 +43,23 @@ export class NavigationGridComponent implements OnInit {
   ngOnInit() {
   }
 
+  build() {
+    if (!this._start) { return; }
+    if (!this._end) { return; }
+    if (!this.gameBoard) { return; }
+    this.engine.setStartTile(this._start);
+    this.engine.setEndTile(this._end);
+  }
+
   setStyles() {
     this.renderer.setStyle(this.elRef.nativeElement, 'width', this.width + 'px');
     this.renderer.setStyle(this.elRef.nativeElement, 'height', this.height + 'px');
   }
 
-  go() { this.engine.createPath(); }
+  go() {
+    setTimeout(() => {
+      this.engine.createPath();
+    }, 10);
+  }
 
 }

@@ -17,15 +17,18 @@ export class EngineService {
         const start = new Date();
         result.forEach((resTile, index) => {
           // setTimeout(() => {
-            console.log('createPath');
+          console.log('createPath');
+
+          if (this.state.graph.grid[resTile.x][resTile.y].weight === 1) {
             this.state.graph.grid[resTile.x][resTile.y].weight = 2;
-            if (index === result.length - 1) {
-              const end = new Date();
-              const elapsed = (end.getTime() - start.getTime()) / 1000;
-              this.state.totalTime = elapsed;
-              this.state.steps = result.length;
-              this.state.router = 'finish';
-            }
+          }
+          if (index === result.length - 1) {
+            const end = new Date();
+            const elapsed = (end.getTime() - start.getTime()) / 1000;
+            this.state.totalTime = elapsed;
+            this.state.steps = result.length;
+            this.state.router = 'finish';
+          }
           // }, (index + 1) * 1000);
         });
       }
@@ -39,7 +42,7 @@ export class EngineService {
     if (this.state.end !== undefined) {
       this.state.graph.grid[this.state.end.x][this.state.end.y].weight = 1;
     }
-    return   this.state.end = tile;
+    return this.state.end = tile;
 
   }
   setStartTile(start: GridNode): any {
