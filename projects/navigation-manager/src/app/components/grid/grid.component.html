@@ -1,10 +1,10 @@
-<div class="grid-bg">
+<div class="grid-bg" [class.map-rotate]="true">
   <img src="/assets/map-dave.png" #image />
 
   <table [ngStyle]="img && {height: height + 'px', width:width + 'px'}">
     <tr *ngFor="let row of dataService.grid; let i = index">
       <td *ngFor="let col of row ; let j = index" (mouseenter)="paintBoundries(i,j)">
-        <app-tile [col]="col"></app-tile>
+        <app-tile [col]="col" (click)="markTile(i,j)"></app-tile>
       </td>
     </tr>
   </table>

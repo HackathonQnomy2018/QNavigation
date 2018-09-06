@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["styles"],{
 
 /***/ "../../node_modules/raw-loader/index.js!../../node_modules/postcss-loader/lib/index.js??embedded!./src/styles.css":
-/*!****************************************************************************************************************************************************!*\
-  !*** D:/Workspace-Sep/QNavigation/node_modules/raw-loader!D:/Workspace-Sep/QNavigation/node_modules/postcss-loader/lib??embedded!./src/styles.css ***!
-  \****************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** C:/Users/YonatanZ/Desktop/Hackathon 2018/QNavigation/node_modules/raw-loader!C:/Users/YonatanZ/Desktop/Hackathon 2018/QNavigation/node_modules/postcss-loader/lib??embedded!./src/styles.css ***!
+  \****************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -12,9 +12,9 @@ module.exports = "/* You can add global styles to this file, and also import oth
 /***/ }),
 
 /***/ "../../node_modules/style-loader/lib/addStyles.js":
-/*!*******************************************************************************!*\
-  !*** D:/Workspace-Sep/QNavigation/node_modules/style-loader/lib/addStyles.js ***!
-  \*******************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/Users/YonatanZ/Desktop/Hackathon 2018/QNavigation/node_modules/style-loader/lib/addStyles.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -403,9 +403,9 @@ function updateLink (link, options, obj) {
 /***/ }),
 
 /***/ "../../node_modules/style-loader/lib/urls.js":
-/*!**************************************************************************!*\
-  !*** D:/Workspace-Sep/QNavigation/node_modules/style-loader/lib/urls.js ***!
-  \**************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** C:/Users/YonatanZ/Desktop/Hackathon 2018/QNavigation/node_modules/style-loader/lib/urls.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -539,7 +539,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Workspace-Sep\QNavigation\projects\navigation-manager\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! C:\Users\YonatanZ\Desktop\Hackathon 2018\QNavigation\projects\navigation-manager\src\styles.css */"./src/styles.css");
 
 
 /***/ })

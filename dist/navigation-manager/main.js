@@ -41,7 +41,7 @@ module.exports = "\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n<app-grid></app-grid>\r\n<app-footer></app-footer>\r\n"
+module.exports = "<app-header></app-header>\n<app-grid></app-grid>\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -113,6 +113,14 @@ var forms_1 = __webpack_require__(/*! @angular/forms */ "../../node_modules/@ang
 var animations_1 = __webpack_require__(/*! @angular/platform-browser/animations */ "../../node_modules/@angular/platform-browser/fesm5/animations.js");
 var material_1 = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
 var http_1 = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
+var router_1 = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
+var map_config_component_1 = __webpack_require__(/*! ./components/header/map-config/map-config.component */ "./src/app/components/header/map-config/map-config.component.ts");
+var scale_component_1 = __webpack_require__(/*! ./components/header/scale/scale.component */ "./src/app/components/header/scale/scale.component.ts");
+var routes = [
+    { path: 'config', component: map_config_component_1.MapConfigComponent },
+    { path: 'scale', component: scale_component_1.ScaleComponent },
+    { path: '**', component: header_component_1.HeaderComponent }
+];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -123,14 +131,20 @@ var AppModule = /** @class */ (function () {
                 tile_component_1.TileComponent,
                 grid_component_1.GridComponent,
                 header_component_1.HeaderComponent,
-                footer_component_1.FooterComponent
+                footer_component_1.FooterComponent,
+                map_config_component_1.MapConfigComponent,
+                scale_component_1.ScaleComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
                 material_1.MatSliderModule,
-                http_1.HttpClientModule
+                http_1.HttpClientModule,
+                router_1.RouterModule.forRoot(routes),
+                material_1.MatFormFieldModule,
+                material_1.MatSelectModule,
+                material_1.MatOptionModule,
             ],
             providers: [data_service_1.DataService],
             bootstrap: [app_component_1.AppComponent]
@@ -161,7 +175,7 @@ module.exports = ".footer{\r\n  height: 9vh;\r\n  /*width: 100%;*/\r\n\r\n}\r\n\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [ngClass]=\"{'footer': true}\">\r\n  <!--<ul class=\"nav nav-pills\" style=\"height: 100%\">-->\r\n    <!--<li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>-->\r\n    <!--<li role=\"presentation\"><a href=\"#\">Profile</a></li>-->\r\n    <!--<li role=\"presentation\"><a href=\"#\">Messages</a></li>-->\r\n  <!--</ul>-->\r\n      <div class=\"col-md-4\" style=\" height: 100%; padding: 0\">\r\n        <button class=\"btn btn-primary\" style=\"width: 100%; height: 100%; border-radius: 0\" ><span class=\"glyphicon glyphicon-tasks\" aria-hidden=\"true\" style=\"font-size: 40px\"></span></button>\r\n      </div>\r\n      <div class=\"col-md-4\" style=\"height: 100%; padding: 0\">\r\n        <button class=\"btn btn-primary\" style=\"width: 100%; height: 100%; border-radius: 0\" (click)=\"print()\">Click</button>\r\n      </div>\r\n      <div class=\"col-md-4\" style=\" height: 100%; padding: 0 \">\r\n        <button class=\"btn btn-primary\" style=\"width: 100%; height: 100%; border-radius: 0\">Click</button>\r\n      </div>\r\n</div>\r\n"
+module.exports = "<div [ngClass]=\"{'footer': true}\">\n  <!--<ul class=\"nav nav-pills\" style=\"height: 100%\">-->\n    <!--<li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>-->\n    <!--<li role=\"presentation\"><a href=\"#\">Profile</a></li>-->\n    <!--<li role=\"presentation\"><a href=\"#\">Messages</a></li>-->\n  <!--</ul>-->\n      <div class=\"col-md-4\" style=\" height: 100%; padding: 0\">\n        <button class=\"btn btn-primary\" style=\"width: 100%; height: 100%; border-radius: 0\"  routerLink=\"/scale\"><span class=\"glyphicon glyphicon-tasks\" aria-hidden=\"true\" style=\"font-size: 40px\"></span></button>\n      </div>\n      <div class=\"col-md-4\" style=\"height: 100%; padding: 0\">\n        <button class=\"btn btn-primary\" style=\"width: 100%; height: 100%; border-radius: 0\" (click)=\"print()\">Click</button>\n      </div>\n      <div class=\"col-md-4\" style=\" height: 100%; padding: 0 \">\n        <button class=\"btn btn-primary\" style=\"width: 100%; height: 100%; border-radius: 0\" routerLink=\"/config\"><span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\" style=\"font-size: 40px\"></span></button>\n      </div>\n</div>\n"
 
 /***/ }),
 
@@ -217,7 +231,7 @@ exports.FooterComponent = FooterComponent;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"grid-bg\">\r\n  <img src=\"/assets/map-dave.png\" #image />\r\n\r\n  <table [ngStyle]=\"img && {height: height + 'px', width:width + 'px'}\">\r\n    <tr *ngFor=\"let row of dataService.grid; let i = index\">\r\n      <td *ngFor=\"let col of row ; let j = index\" (mouseenter)=\"paintBoundries(i,j)\">\r\n        <app-tile [col]=\"col\"></app-tile>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n</div>\r\n\r\n\r\n\r\n<!--<div class=\"grid-bg\">-->\r\n<!--</div>-->"
+module.exports = "<div class=\"grid-bg\" [class.map-rotate]=\"true\">\r\n  <img src=\"/assets/map-dave.png\" #image />\r\n\r\n  <table [ngStyle]=\"img && {height: height + 'px', width:width + 'px'}\">\r\n    <tr *ngFor=\"let row of dataService.grid; let i = index\">\r\n      <td *ngFor=\"let col of row ; let j = index\" (mouseenter)=\"paintBoundries(i,j)\">\r\n        <app-tile [col]=\"col\" (click)=\"markTile(i,j)\"></app-tile>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n</div>\r\n\r\n\r\n\r\n<!--<div class=\"grid-bg\">-->\r\n<!--</div>-->"
 
 /***/ }),
 
@@ -228,7 +242,7 @@ module.exports = "<div class=\"grid-bg\">\r\n  <img src=\"/assets/map-dave.png\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: flex;\n  justify-content: center;\n  width: 100%;\n  height: 100%; }\n  :host .grid-bg {\n    position: relative;\n    display: block;\n    height: 82vh;\n    text-overflow: ellipsis; }\n  :host .grid-bg img {\n      display: block;\n      max-height: 100%; }\n  :host .grid-bg table {\n      display: block;\n      position: absolute;\n      top: 0;\n      left: 0; }\n  :host .grid-bg table tbody {\n        display: flex;\n        flex-direction: column;\n        height: 100%;\n        width: 100%; }\n  :host .grid-bg table tbody tr {\n          display: flex;\n          flex: 1;\n          border-bottom: 1px solid gray; }\n  :host .grid-bg table tbody tr td {\n            flex: 1;\n            border-left: 1px solid gray; }\n"
+module.exports = ":host {\n  display: flex;\n  justify-content: center;\n  left: 0;\n  width: 100%;\n  height: 82vh; }\n  :host .grid-bg {\n    position: relative;\n    display: inline-block;\n    text-overflow: ellipsis; }\n  :host .grid-bg:not(.map-rotate) {\n      height: 82vh; }\n  :host .grid-bg.map-rotate {\n      top: 0;\n      left: 0;\n      -webkit-transform: rotate(90deg);\n              transform: rotate(90deg);\n      height: 100%;\n      width: 82vh; }\n  :host .grid-bg img {\n      display: block;\n      max-height: 100%; }\n  :host .grid-bg table {\n      display: block;\n      position: absolute;\n      top: 0;\n      left: 0; }\n  :host .grid-bg table tbody {\n        display: flex;\n        flex-direction: column;\n        height: 100%;\n        width: 100%; }\n  :host .grid-bg table tbody tr {\n          display: flex;\n          flex: 1;\n          border-bottom: 1px solid gray; }\n  :host .grid-bg table tbody tr td {\n            flex: 1;\n            border-left: 1px solid gray; }\n"
 
 /***/ }),
 
@@ -262,6 +276,18 @@ var GridComponent = /** @class */ (function () {
     }
     GridComponent.prototype.ngOnInit = function () {
     };
+    GridComponent.prototype.markTile = function (row, col) {
+        if (this.dataService.currTile === this.dataService.tileColors.location) {
+            this.dataService.grid[row][col] = this.dataService.currTile.id;
+        }
+        this.dataService.currLocation[this.dataService.currLocation.id] = {
+            x: row,
+            y: col,
+            id: this.dataService.currLocation.id,
+            name: this.dataService.locations[this.dataService.currLocation.id].viewValue
+        };
+        console.log(this.dataService.locations);
+    };
     GridComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         setTimeout(function () {
@@ -271,27 +297,28 @@ var GridComponent = /** @class */ (function () {
         }, 500);
     };
     GridComponent.prototype.paintBoundries = function (i, j) {
-        if (this.ctrlPressed) {
-            this.dataService.grid[i][j] = 2;
-        }
-        if (this.isShiftKeyPressed) {
-            this.dataService.grid[i][j] = 1;
+        if (this.ctrlPressed || this.isShiftKeyPressed) {
+            this.dataService.grid[i][j] = this.dataService.currTile.id;
         }
     };
     GridComponent.prototype.handleKeyDown = function (e) {
         if (e.ctrlKey) {
             this.ctrlPressed = true;
+            this.dataService.currTile = this.dataService.tileColors.obstacle;
+            return;
         }
         if (e.shiftKey) {
             this.isShiftKeyPressed = true;
+            this.dataService.currTile = this.dataService.tileColors.free;
+            return;
         }
+        this.dataService.currTile = this.dataService.tileColors.free;
     };
     GridComponent.prototype.handleKeyUp = function (e) {
-        if (!e.ctrlKey) {
+        if (!e.ctrlKey || !e.shiftKey) {
             this.ctrlPressed = false;
-        }
-        if (!e.shiftKey) {
             this.isShiftKeyPressed = false;
+            this.dataService.currTile = this.dataService.tileColors.free;
         }
     };
     __decorate([
@@ -325,7 +352,7 @@ exports.GridComponent = GridComponent;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".header{\r\n  height: 9vh;\r\n  /*width: 100%;*/\r\n  border: solid 1px;\r\n  text-align: center;\r\n  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffb76b+0,ffa73d+23,ff7c00+80,ff7f04+100 */\r\n  background: #ffb76b; /* Old browsers */ /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */\r\n  background: linear-gradient(to bottom, #ffb76b 0%,#ffa73d 23%,#ff7c00 80%,#ff7f04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */\r\n  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */\r\n}\r\n\r\nmat-slider {\r\n  width: 300px;\r\n}"
+module.exports = ".header{\r\n  height: 9vh;\r\n  /*width: 100%;*/\r\n  border: solid 1px;\r\n  text-align: center;\r\n  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffb76b+0,ffa73d+23,ff7c00+80,ff7f04+100 */\r\n  background: #ffb76b; /* Old browsers */ /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */\r\n  background: linear-gradient(to bottom, #ffb76b 0%,#ffa73d 23%,#ff7c00 80%,#ff7f04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */\r\n  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */\r\n}\r\n\r\n"
 
 /***/ }),
 
@@ -336,7 +363,7 @@ module.exports = ".header{\r\n  height: 9vh;\r\n  /*width: 100%;*/\r\n  border: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6\">\r\n            <h4>Scale Row</h4>\r\n            <mat-slider\r\n                    [(ngModel)]=\"dataService.numOfRows\"\r\n                    thumbLabel\r\n                    tickInterval=\"1000\"\r\n                    min=\"1\"\r\n                    max=\"100\"></mat-slider>\r\n\r\n        </div>\r\n        <div class=\"col-md-6\">\r\n            <h4>Scale Col</h4>\r\n            <mat-slider\r\n                    [(ngModel)]=\"dataService.numOfCols\"\r\n                    thumbLabel\r\n                    tickInterval=\"1000\"\r\n                    min=\"1\"\r\n                    max=\"100\"></mat-slider>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"header\">\n    <router-outlet></router-outlet>\n\n</div>\n"
 
 /***/ }),
 
@@ -385,6 +412,139 @@ exports.HeaderComponent = HeaderComponent;
 
 /***/ }),
 
+/***/ "./src/app/components/header/map-config/map-config.component.css":
+/*!***********************************************************************!*\
+  !*** ./src/app/components/header/map-config/map-config.component.css ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/components/header/map-config/map-config.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/components/header/map-config/map-config.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-form-field>\r\n  <mat-select placeholder=\"Set Location\" (selectionChange)=\"paintLocation($event)\">\r\n    <mat-option *ngFor=\"let location of dataService.locations\" [value]=\"location.value\" >\r\n      {{location.viewValue}}\r\n    </mat-option>\r\n  </mat-select>\r\n</mat-form-field>"
+
+/***/ }),
+
+/***/ "./src/app/components/header/map-config/map-config.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/components/header/map-config/map-config.component.ts ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+var data_service_1 = __webpack_require__(/*! ../../../services/data.service */ "./src/app/services/data.service.ts");
+var MapConfigComponent = /** @class */ (function () {
+    function MapConfigComponent(dataService) {
+        this.dataService = dataService;
+    }
+    MapConfigComponent.prototype.ngOnInit = function () {
+    };
+    MapConfigComponent.prototype.paintLocation = function (e) {
+        console.log(e);
+        this.dataService.currTile = this.dataService.tileColors.location;
+        this.dataService.currLocation = { id: e.value };
+    };
+    MapConfigComponent = __decorate([
+        core_1.Component({
+            selector: 'app-map-config',
+            template: __webpack_require__(/*! ./map-config.component.html */ "./src/app/components/header/map-config/map-config.component.html"),
+            styles: [__webpack_require__(/*! ./map-config.component.css */ "./src/app/components/header/map-config/map-config.component.css")]
+        }),
+        __metadata("design:paramtypes", [data_service_1.DataService])
+    ], MapConfigComponent);
+    return MapConfigComponent;
+}());
+exports.MapConfigComponent = MapConfigComponent;
+
+
+/***/ }),
+
+/***/ "./src/app/components/header/scale/scale.component.css":
+/*!*************************************************************!*\
+  !*** ./src/app/components/header/scale/scale.component.css ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "mat-slider {\r\n    width: 300px;\r\n}"
+
+/***/ }),
+
+/***/ "./src/app/components/header/scale/scale.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/components/header/scale/scale.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!--<div class=\"row\">-->\n  <div class=\"col-md-6\">\n    <h4>Scale Row</h4>\n    <mat-slider\n            [(ngModel)]=\"dataService.numOfRows\"\n            thumbLabel\n            tickInterval=\"1000\"\n            min=\"1\"\n            max=\"100\"></mat-slider>\n\n  </div>\n  <div class=\"col-md-6\">\n    <h4>Scale Col</h4>\n    <mat-slider\n            [(ngModel)]=\"dataService.numOfCols\"\n            thumbLabel\n            tickInterval=\"1000\"\n            min=\"1\"\n            max=\"100\"></mat-slider>\n  </div>\n<!--</div>-->"
+
+/***/ }),
+
+/***/ "./src/app/components/header/scale/scale.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/components/header/scale/scale.component.ts ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+var data_service_1 = __webpack_require__(/*! ../../../services/data.service */ "./src/app/services/data.service.ts");
+var ScaleComponent = /** @class */ (function () {
+    function ScaleComponent(dataService) {
+        this.dataService = dataService;
+    }
+    ScaleComponent.prototype.ngOnInit = function () {
+    };
+    ScaleComponent = __decorate([
+        core_1.Component({
+            selector: 'app-scale',
+            template: __webpack_require__(/*! ./scale.component.html */ "./src/app/components/header/scale/scale.component.html"),
+            styles: [__webpack_require__(/*! ./scale.component.css */ "./src/app/components/header/scale/scale.component.css")]
+        }),
+        __metadata("design:paramtypes", [data_service_1.DataService])
+    ], ScaleComponent);
+    return ScaleComponent;
+}());
+exports.ScaleComponent = ScaleComponent;
+
+
+/***/ }),
+
 /***/ "./src/app/components/tile/tile.component.html":
 /*!*****************************************************!*\
   !*** ./src/app/components/tile/tile.component.html ***!
@@ -392,7 +552,7 @@ exports.HeaderComponent = HeaderComponent;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tile\" [class.tile-block]=\"col === 2\" [ngStyle]=\"tileStyle\">\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"tile\" [class.tile-block]=\"col === 2\" [class.tile-location]=\"col === 3\" [ngStyle]=\"tileStyle\">\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -403,7 +563,7 @@ module.exports = "<div class=\"tile\" [class.tile-block]=\"col === 2\" [ngStyle]
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".tile {\n  /*width: calc(100vw / 30.5);*/\n  /*height: calc(62vh / 30);*/\n  display: block;\n  width: 100%;\n  height: 100%;\n  display: block;\n  border: solid;\n  border-width: 0.01em;\n  border-color: rgba(138, 138, 138, 0.6);\n  position: relative; }\n  .tile.tile-block {\n    background-color: rgba(255, 0, 0, 0.6); }\n"
+module.exports = ".tile {\n  /*width: calc(100vw / 30.5);*/\n  /*height: calc(62vh / 30);*/\n  display: block;\n  width: 100%;\n  height: 100%;\n  display: block;\n  border: solid;\n  border-width: 0.01em;\n  border-color: rgba(138, 138, 138, 0.6);\n  position: relative; }\n  .tile.tile-block {\n    background-color: rgba(255, 0, 0, 0.6); }\n  .tile.tile-location {\n    background-color: rgba(255, 255, 0, 0.6); }\n"
 
 /***/ }),
 
@@ -427,10 +587,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-var data_service_1 = __webpack_require__(/*! ../../services/data.service */ "./src/app/services/data.service.ts");
 var TileComponent = /** @class */ (function () {
-    function TileComponent(dataService) {
-        this.dataService = dataService;
+    function TileComponent() {
     }
     TileComponent.prototype.ngOnInit = function () {
         // this.tileStyle = {
@@ -452,7 +610,7 @@ var TileComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./tile.component.html */ "./src/app/components/tile/tile.component.html"),
             styles: [__webpack_require__(/*! ./tile.component.scss */ "./src/app/components/tile/tile.component.scss")]
         }),
-        __metadata("design:paramtypes", [data_service_1.DataService])
+        __metadata("design:paramtypes", [])
     ], TileComponent);
     return TileComponent;
 }());
@@ -485,7 +643,20 @@ var http_1 = __webpack_require__(/*! @angular/common/http */ "../../node_modules
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
-        this.configUrl = "http://localhost/QFlowHackaton/qgo_api/Main/GetData";
+        this.configUrl = 'http://ivana10-pc/QFlowHackaton/qgo_api/Main/GetData';
+        this.viewGrid = false;
+        this.tileColors = {
+            free: { id: 1, color: '' },
+            obstacle: { id: 2, color: 'red' },
+            location: { id: 3, color: 'yellow' }
+        };
+        this.locationDict = {};
+        this.locations = [
+            { value: '0', viewValue: 'OperationRoom1', metadata: {} },
+            { value: '1', viewValue: 'OperationRoom2', metadata: {} },
+            { value: '2', viewValue: 'OperationRoom3', metadata: {} }
+        ];
+        this.currTile = this.tileColors.free;
         this._numOfRows = 30;
         this._numOfCols = 30;
         this.initArray();
@@ -519,7 +690,6 @@ var DataService = /** @class */ (function () {
                 var d = data;
             };
         });
-        console.log(this._numOfRows);
         this.grid = [];
         for (var i = 0; i < this._numOfRows; i++) {
             this.grid[i] = [];
@@ -597,7 +767,7 @@ platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Workspace-Sep\QNavigation\projects\navigation-manager\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\YonatanZ\Desktop\Hackathon 2018\QNavigation\projects\navigation-manager\src\main.ts */"./src/main.ts");
 
 
 /***/ })

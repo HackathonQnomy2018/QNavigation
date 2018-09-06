@@ -11,7 +11,8 @@ export class TileComponent implements OnInit {
   // public tileStyle: any;
   public tileStyle: any;
   @Input() col;
-  constructor(private dataService: DataService) { }
+  constructor() {
+  }
 
   ngOnInit() {
     // this.tileStyle = {
