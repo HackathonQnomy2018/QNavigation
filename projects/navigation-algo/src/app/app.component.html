@@ -1,4 +1,6 @@
+<div class="my-map">
+    <img src="/assets/map-dave.png" #image/>
+    <app-navigation-grid [image]="image"  [start]="start" [end]="end" [matrix]="matrixReal" #navigation></app-navigation-grid>
+</div>
 
-<img src="/assets/map-dave.png"/>
-<app-navigation-grid [start]="start" [end]="end" [matrix]="matrixTest" #navigation></app-navigation-grid>
 <app-actions (go)="navigation.go()"></app-actions>
