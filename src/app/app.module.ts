@@ -8,10 +8,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MapConfigComponent } from './components/map-config/map-config.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MapConfigComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), HttpClientModule, AppRoutingModule],
   providers: [

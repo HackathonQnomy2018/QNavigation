@@ -1,0 +1,7 @@
+<mat-form-field>
+  <mat-select placeholder="Set Location" (selectionChange)="paintLocation($event)">
+    <mat-option *ngFor="let location of dataService.locations" [value]="location.value" >
+      {{location.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
